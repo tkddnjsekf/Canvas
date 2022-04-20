@@ -1,0 +1,101 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        .box{
+            border:1px solid black;
+            width: 100px;
+            height:250px;
+            display: block;
+            text-align:center;
+            float:left;
+            margin-right:5px;
+            padding: 1px;
+            box-sizing: border-box;
+        }
+        .redb{
+            border:red solid 1px;
+        }
+        .greenb {
+            border:green solid 1px;
+        }
+        .yellowb{
+            border:yellow solid 1px;
+        }
+        .selected{ 
+            border-width: 5px;
+        }
+        </style>
+</head>
+<body>
+<!-- 6개 -->
+<input type="button" id="reset" value="리셋"><br>
+<div id="main">
+    <div id="a" class="box redb"></div>
+    <div id="b" class="box greenb"></div>
+    <div id="c" class="box yellowb"></div>
+</div>
+
+<script>
+    var colors = ["red", "green", "yellow", "blue", "purple", "brown"];
+    var divs = [document.getElementById("a"), document.getElementById("b"), document.getElementById("c")];
+    var array = [[5,4,3,2,1,0],[],[]];
+    var sel = -1;
+    document.getElementById("reset").onclick=()=>{
+        reset();
+    };
+    for(var i=0; i < 3; i++){
+        var func = (num)=>{
+            divs[num].onclick = () => {
+                if (sel != -1) {
+                        move(sel, num);
+                    sel = -1;
+                    for(var j=0; j < 3; j++){ 
+                        divs[j].classList.remove("selected");
+                    }
+                }else{
+                    for (var j = 0; j < 3; j++) {
+                        divs[j].classList.remove("selected");
+                    }
+                    divs[num].classList.add("selected")
+                    sel = num;    
+                }
+            };
+        }
+        func(i);
+    }
+
+    function render(){
+        for(var i=0; i<3;i++)
+            divs[i].innerHTML = "";
+        for(var dn = 0; dn < 3; dn++){
+            for(var i=0; i<array[dn].length; i++){
+                for (var j = 0; j < array[dn][i]+1; j++) {
+                    divs[dn].innerHTML += "<span style='display:inline-block; background: "+colors[array[dn][i]]+"; border:1px solid black; width:10px; height:10px; margin: 1px;'>";
+                    //aDiv.innerHTML += array[0][i]
+                    divs[dn].innerHTML += "</span>";
+                }
+                divs[dn].innerHTML += "<br>";
+            }
+        }
+    }
+
+    function reset(){
+        array = [[5, 4, 3, 2, 1, 0], [], []];
+        render();
+    }
+
+    function move(s, d){ 
+        var result = array[s].pop();
+        if(result != undefined){
+            console.log(result);
+            array[d].push(result);
+            render();
+        }
+    }
+    render();
+</script>
+
+</body>
+
+</html>
