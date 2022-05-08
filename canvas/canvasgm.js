@@ -22,13 +22,15 @@ const context = canvas.getContext('2d');
 
 // }
 
- class bullet{
+ class bullet 
+ {
     
  
 
-    constructor(){
+    constructor() {
         this.name = 'bullet';
-    }}
+     } 
+ }
 
     canvas.onclick = function(event){
         
