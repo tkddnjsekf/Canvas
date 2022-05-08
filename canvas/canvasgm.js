@@ -30,7 +30,7 @@ const context = canvas.getContext('2d');
     constructor() {
         this.name = 'bullet';
      } 
- }
+  }
 
     canvas.onclick = function(event){
         
