@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html lang="en"> 
+    <head>
+         </head> 
+    <body> <!-- HTML --> 
+        <canvas id="myCanvas" width="400" height="300" style="border: 1px solid black;"></canvas>
+         <!-- Javascript --> 
+         <script>  
+       const canvas = document.getElementById('myCanvas');
+          const ctx = canvas.getContext("2d"); 
+        canvas.onclick = function(event)
+        {  
+            const x = event.clientX - ctx.canvas.offsetLeft;
+             const y = event.clientY - ctx.canvas.offsetTop;
+               ctx.fillRect(x-15, y-15, 30, 30); 
+            } 
+              
+              </script> 
+               
+            </body> 
+               
+            </html>
+
